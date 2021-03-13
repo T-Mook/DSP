@@ -1,0 +1,76 @@
+[
+    {
+        "Iron Ore":{
+            "index":0,
+            "category":"Ores",
+            "recipe":"Iron Ore Vein",
+            "output":1,
+            "producedSecond":2.0,
+            "producedIn":"Mining machine"
+        },
+        "Copper Ore":{
+            "index":1,
+            "category":"Ores",
+            "recipe":"Copper Ore Vein",
+            "output":1,
+            "producedSecond":2.0,
+            "producedIn":"Mining machine"
+        },
+        "Iron Ingot":{
+            "index":17,
+            "category":"Materials",
+            "recipe":"Iron Ore(1)",
+            "output":1,
+            "producedSecond":1.0,
+            "producedIn":"Smelter"
+        },
+        "Magnet":{
+            "index":18,
+            "category":"Materials",
+            "recipe":"Iron Ore(1)",
+            "output":1,
+            "producedSecond":1.5,
+            "producedIn":"Smelter"
+        },
+        "Magnetic Coil":{
+            "index":19,
+            "category":"Materials",
+            "recipe":"Magnet(2),Copper Ingot(1)",
+            "output":2,
+            "producedSecond":1.0,
+            "producedIn":"Assembling Machine"
+        },
+        "Copper Ingot":{
+            "index":20,
+            "category":"Materials",
+            "recipe":"Copper Ore(1)",
+            "output":1,
+            "producedSecond":1.0,
+            "producedIn":"Smelter"
+        },
+        "Gear":{
+            "index":42,
+            "category":"Components",
+            "recipe":"Iron Ingot(1)",
+            "output":1,
+            "producedSecond":1.0,
+            "producedIn":"Assembling Machine"
+        },
+        "Circuit Board":{
+            "index":43,
+            "category":"Components",
+            "recipe":"Iron Ingot(2),Copper Ingot(1)",
+            "output":2,
+            "producedSecond":1.0,
+            "producedIn":"Assembling Machine"
+        },
+        "Electric Motor":{
+            "index":47,
+            "category":"Components",
+            "recipe":"Iron Ingot(2),Gear(1),Magnetic Coil(1)",
+            "output":1,
+            "producedSecond":2.0,
+            "producedIn":"Assembling Machine"
+        }
+    }
+]
