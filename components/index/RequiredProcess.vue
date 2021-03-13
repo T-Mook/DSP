@@ -21,8 +21,8 @@ import dataEnSample from '~/static/data/dataEn.json'
 class ComponentsIndexRequiredProcess extends Vue {
   @Prop({ type: String, default: '' }) upperResourceName!: string
 
-  test(searchTarget): any {
-    const datas: object = dataEnSample[0]
+  test(searchTarget: string): any {
+    const datas: { [key: string]: any } = dataEnSample[0]
     const result: any = datas[searchTarget]
     return result
   }
