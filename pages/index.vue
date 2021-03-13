@@ -5,7 +5,7 @@
       {{ resourceName }}
       <v-autocomplete
         v-model="resourceName"
-        :items="resources"
+        :items="totalNameOfResource"
         dense
         filled
         label="Filled"
@@ -23,7 +23,8 @@ import dataEnSample from '~/static/data/dataEn.json'
 
 @Component({
   asyncData() {
-    return { dataEnSample }
+    const totalNameOfResource: Array<string> = Object.keys(dataEnSample[0])
+    return { totalNameOfResource }
   },
   components: {
     RequiredProcess,
@@ -40,12 +41,6 @@ import dataEnSample from '~/static/data/dataEn.json'
 })
 class PagesIndex extends Vue {
   resourceName: null | string = 'Electric Motor'
-  resources: Array<string> = [
-    'Iron Ore',
-    'Copper Ore',
-    'Iron Ingot',
-    'Electric Motor',
-  ]
 }
 export default PagesIndex
 </script>
