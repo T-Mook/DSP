@@ -2,13 +2,13 @@
   <v-row justify="center" align="center">
     <v-card :max-width="mainCardMaxWidth" flat tile color="rgba(0,0,0,0)">
       <!-- ### Start : Search Bar ### -->
-      {{ resourceName }}
       <v-autocomplete
         v-model="resourceName"
         :items="totalNameOfResource"
         dense
         filled
-        label="Filled"
+        label="생산 목표 자원"
+        class="my-4"
       ></v-autocomplete>
       <!-- ### Start : All Required Process ### -->
       <required-process :upper-resource-name="resourceName" />

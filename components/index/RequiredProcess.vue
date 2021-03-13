@@ -3,9 +3,9 @@
     <v-card-title>
       {{ upperResourceName }}
     </v-card-title>
-    <v-card-items>
+    <v-card-text>
       {{ test(upperResourceName) }}
-    </v-card-items>
+    </v-card-text>
   </v-card>
 </template>
 
