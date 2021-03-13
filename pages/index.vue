@@ -11,6 +11,7 @@
       ></v-autocomplete>
       <!-- ### Start : All Required Process ### -->
       <required-process />
+      {{ dataEnSample[0] }}
     </v-card>
   </v-row>
 </template>
@@ -18,8 +19,12 @@
 <script lang="ts">
 import { Component, Provide, Vue } from 'nuxt-property-decorator'
 import RequiredProcess from '@/components/index/RequiredProcess.vue'
+import dataEnSample from '~/static/data/dataEn.json'
 
 @Component({
+  asyncData() {
+    return { dataEnSample }
+  },
   components: {
     RequiredProcess,
   },
