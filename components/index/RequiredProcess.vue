@@ -1,7 +1,11 @@
 <template>
   <v-card>
-    {{ resourceName }}
-    {{ test }}
+    <v-card-title>
+      {{ upperResourceName }}
+    </v-card-title>
+    <v-card-items>
+      {{ test(upperResourceName) }}
+    </v-card-items>
   </v-card>
 </template>
 
@@ -13,15 +17,15 @@ import dataEnSample from '~/static/data/dataEn.json'
   asyncData() {
     return { dataEnSample }
   },
-  computed: {
-    test() {
-      const result = dataEnSample[0]['Iron Ore']
-      return result
-    },
-  },
 })
 class ComponentsIndexRequiredProcess extends Vue {
-  @Prop({ type: String, default: 'Electric Motor' }) resourceName!: string
+  @Prop({ type: String, default: '' }) upperResourceName!: string
+
+  test(searchTarget): any {
+    const datas: object = dataEnSample[0]
+    const result: any = datas[searchTarget]
+    return result
+  }
 }
 
 export default ComponentsIndexRequiredProcess

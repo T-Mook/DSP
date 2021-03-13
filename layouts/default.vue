@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar :color="appBar.color" dense flat>
+    <v-app-bar :color="appBar.color" max-height="50" dense flat>
       <v-spacer />
       <v-app-bar-title class="white--text">
         <small>{{ appBar.title }}</small>

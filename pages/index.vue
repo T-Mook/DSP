@@ -2,6 +2,7 @@
   <v-row justify="center" align="center">
     <v-card :max-width="mainCardMaxWidth" flat tile color="rgba(0,0,0,0)">
       <!-- ### Start : Search Bar ### -->
+      {{ resourceName }}
       <v-autocomplete
         v-model="resourceName"
         :items="resources"
@@ -10,14 +11,13 @@
         label="Filled"
       ></v-autocomplete>
       <!-- ### Start : All Required Process ### -->
-      <required-process />
-      {{ dataEnSample[0] }}
+      <required-process :upper-resource-name="resourceName" />
     </v-card>
   </v-row>
 </template>
 
 <script lang="ts">
-import { Component, Provide, Vue } from 'nuxt-property-decorator'
+import { Component, Vue } from 'nuxt-property-decorator'
 import RequiredProcess from '@/components/index/RequiredProcess.vue'
 import dataEnSample from '~/static/data/dataEn.json'
 
@@ -39,8 +39,13 @@ import dataEnSample from '~/static/data/dataEn.json'
   },
 })
 class PagesIndex extends Vue {
-  @Provide() resourceName: null | string = null
-  @Provide() resources: Array<string> = ['Iron Ore', 'Copper Ore', 'Iron Ingot']
+  resourceName: null | string = 'Electric Motor'
+  resources: Array<string> = [
+    'Iron Ore',
+    'Copper Ore',
+    'Iron Ingot',
+    'Electric Motor',
+  ]
 }
 export default PagesIndex
 </script>
