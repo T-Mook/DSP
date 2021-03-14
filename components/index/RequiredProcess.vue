@@ -101,78 +101,106 @@ class ComponentsIndexRequiredProcess extends Vue {
     return resultArray
   }
 
+  returnLowerMaterialProductionInfoArray(
+    neededList: Array<{ [key: string]: any }>,
+  ): Array<object> {
+    const resultNeededList: Array<object> = []
+
+    for (const obj of neededList) {
+      // const building: string = obj['building']
+      // const output: number = Number(obj['output'])
+      // const second: number = Number(obj['second'])
+
+      // recipe Infos
+      const recipe: object = obj['recipe']
+      // const resourceName: Array<string> = Object.keys(recipe)
+      // const recipeNumber: number = resourceName.length
+      const resourceEntries: Array<any> = Object.entries(recipe)
+
+      const mNameObject: { [key: string]: any } = {}
+
+      for (const materialInfo of resourceEntries) {
+        const mName: string = materialInfo[0]
+        const mNumber: number = materialInfo[1]
+
+        const lowerNeededList: Array<object> = this.returnNeededList(mName)
+        mNameObject[mName] = [mNumber, lowerNeededList]
+      }
+
+      obj['recipeDetail'] = mNameObject
+      resultNeededList.push(obj)
+    }
+
+    return resultNeededList
+  }
+
+  returnNeededList(targetResourceName: string): Array<object> {
+    const datas: { [key: string]: any } = dataEnSample
+    // const totalNameOfResource: Array<string> = Object.keys(datas)
+    // if (targetResourceName in totalNameOfRes
+
+    const totalTextOfRecipe: any = datas[targetResourceName]['recipe']
+    const arrayOfRecipe: Array<string> = this.arrayAfterSlice(
+      totalTextOfRecipe,
+      '&',
+    )
+    const recipeList: Array<object> = this.returnObjectFromEachRecipe(
+      arrayOfRecipe,
+    )
+    // Handling Needed Buildings
+    const textOfBuildingName: string = datas[targetResourceName]['producedIn']
+    const buildingList: Array<string> = this.arrayAfterSlice(
+      textOfBuildingName,
+      '&',
+    )
+    // Handling Output
+    const textOfOutputNumber: string = datas[targetResourceName]['output']
+    const outputList: Array<string> = this.arrayAfterSlice(
+      textOfOutputNumber,
+      '&',
+    )
+    // Handling Produce Time
+    const textOfProducedSecond: string =
+      datas[targetResourceName]['producedSecond']
+    const secondList: Array<string> = this.arrayAfterSlice(
+      textOfProducedSecond,
+      '&',
+    )
+    // Check Value Number of Each List
+    const ArrayOfListsLength: Array<number> = [
+      recipeList.length,
+      buildingList.length,
+      outputList.length,
+      secondList.length,
+    ]
+    if (ArrayOfListsLength.every((v) => v !== ArrayOfListsLength[0])) {
+      // Check total condition in array
+      const text: string = '목록 숫자가 맞지 않습니다'
+      throw text
+    }
+    // Change Array to Each Building-Recipe-Output-Second Array
+    const arrayOfLists: { [key: string]: any } = {
+      buildingList,
+      recipeList,
+      outputList,
+      secondList,
+    }
+    const neededList = this.makeEachRecipeArray(arrayOfLists)
+    return neededList
+  }
+
   requiredBuildingAndRecipe(targetResourceName: string): object | undefined {
     try {
-      const datas: { [key: string]: any } = dataEnSample
-      // const totalNameOfResource: Array<string> = Object.keys(datas)
-      // if (targetResourceName in totalNameOfResource) {}
-
-      // Handling Recipe
-      const totalTextOfRecipe: any = datas[targetResourceName]['recipe']
-      const arrayOfRecipe: Array<string> = this.arrayAfterSlice(
-        totalTextOfRecipe,
-        '&',
+      const neededList = this.returnNeededList(targetResourceName)
+      const resultArray = this.returnLowerMaterialProductionInfoArray(
+        neededList,
       )
-
-      const recipeList: Array<object> = this.returnObjectFromEachRecipe(
-        arrayOfRecipe,
-      )
-
-      // Handling Needed Buildings
-      const textOfBuildingName: string = datas[targetResourceName]['producedIn']
-      const buildingList: Array<string> = this.arrayAfterSlice(
-        textOfBuildingName,
-        '&',
-      )
-
-      // Handling Output
-      const textOfOutputNumber: string = datas[targetResourceName]['output']
-      const outputList: Array<string> = this.arrayAfterSlice(
-        textOfOutputNumber,
-        '&',
-      )
-
-      // Handling Produce Time
-      const textOfProducedSecond: string =
-        datas[targetResourceName]['producedSecond']
-      const secondList: Array<string> = this.arrayAfterSlice(
-        textOfProducedSecond,
-        '&',
-      )
-
-      // Check Value Number of Each List
-      const ArrayOfListsLength: Array<number> = [
-        recipeList.length,
-        buildingList.length,
-        outputList.length,
-        secondList.length,
-      ]
-
-      if (ArrayOfListsLength.every((v) => v !== ArrayOfListsLength[0])) {
-        // Check total condition in array
-        const text: string = '목록 숫자가 맞지 않습니다'
-        throw text
-      }
-
-      // Change Array to Each Building-Recipe-Output-Second Array
-      const arrayOfLists: { [key: string]: any } = {
-        buildingList,
-        recipeList,
-        outputList,
-        secondList,
-      }
-
-      const resultArray = this.makeEachRecipeArray(arrayOfLists)
 
       return resultArray
     } catch (e) {
       alert(e)
     }
   }
-  //
-  // productionChain(targetResourceName: string) {
-  //   return
-  // }
 }
 
 export default ComponentsIndexRequiredProcess
