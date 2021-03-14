@@ -77,46 +77,102 @@ class ComponentsIndexRequiredProcess extends Vue {
     return result
   }
 
-  requiredBuildingAndRecipe(finalResourceName: string): object {
-    const datas: { [key: string]: any } = dataEnSample
-    // const totalNameOfResource: Array<string> = Object.keys(datas)
-    // if (finalResourceName in totalNameOfResource) {}
+  makeEachRecipeArray(arrayOfLists: { [key: string]: any }): Array<object> {
+    const buildingList: Array<any> = arrayOfLists['buildingList']
+    const recipeList: Array<any> = arrayOfLists['recipeList']
+    const outputList: Array<any> = arrayOfLists['outputList']
+    const secondList: Array<any> = arrayOfLists['secondList']
 
-    // Handling Recipe
-    const totalTextOfRecipe: any = datas[finalResourceName]['recipe']
-    const arrayOfRecipe: Array<string> = this.arrayAfterSlice(
-      totalTextOfRecipe,
-      '&',
-    )
+    const resultArray: Array<object> = []
+    let i: number = 0
 
-    const recipeList: Array<object> = this.returnObjectFromEachRecipe(
-      arrayOfRecipe,
-    )
+    while (i < buildingList.length) {
+      const tempObject: object = {
+        building: buildingList[i],
+        recipe: recipeList[i],
+        output: outputList[i],
+        second: secondList[i],
+      }
 
-    // Handling Needed Buildings
-    const textOfBuildingName: string = datas[finalResourceName]['producedIn']
-    const buildingList: Array<string> = this.arrayAfterSlice(
-      textOfBuildingName,
-      '&',
-    )
-
-    // Check Value Number of Each List
-    if (recipeList.length !== buildingList.length) {
-      alert(
-        String(recipeList.length) +
-          '개' +
-          String(buildingList.length) +
-          '개' +
-          '목록 숫자가 맞지 않습니다',
-      )
+      resultArray.push(tempObject)
+      i += 1
     }
 
-    const result: { [key: string]: any } = {
-      buildingList,
-      recipeList,
-    }
-    return result
+    return resultArray
   }
+
+  requiredBuildingAndRecipe(targetResourceName: string): object | undefined {
+    try {
+      const datas: { [key: string]: any } = dataEnSample
+      // const totalNameOfResource: Array<string> = Object.keys(datas)
+      // if (targetResourceName in totalNameOfResource) {}
+
+      // Handling Recipe
+      const totalTextOfRecipe: any = datas[targetResourceName]['recipe']
+      const arrayOfRecipe: Array<string> = this.arrayAfterSlice(
+        totalTextOfRecipe,
+        '&',
+      )
+
+      const recipeList: Array<object> = this.returnObjectFromEachRecipe(
+        arrayOfRecipe,
+      )
+
+      // Handling Needed Buildings
+      const textOfBuildingName: string = datas[targetResourceName]['producedIn']
+      const buildingList: Array<string> = this.arrayAfterSlice(
+        textOfBuildingName,
+        '&',
+      )
+
+      // Handling Output
+      const textOfOutputNumber: string = datas[targetResourceName]['output']
+      const outputList: Array<string> = this.arrayAfterSlice(
+        textOfOutputNumber,
+        '&',
+      )
+
+      // Handling Produce Time
+      const textOfProducedSecond: string =
+        datas[targetResourceName]['producedSecond']
+      const secondList: Array<string> = this.arrayAfterSlice(
+        textOfProducedSecond,
+        '&',
+      )
+
+      // Check Value Number of Each List
+      const ArrayOfListsLength: Array<number> = [
+        recipeList.length,
+        buildingList.length,
+        outputList.length,
+        secondList.length,
+      ]
+
+      if (ArrayOfListsLength.every((v) => v !== ArrayOfListsLength[0])) {
+        // Check total condition in array
+        const text: string = '목록 숫자가 맞지 않습니다'
+        throw text
+      }
+
+      // Change Array to Each Building-Recipe-Output-Second Array
+      const arrayOfLists: { [key: string]: any } = {
+        buildingList,
+        recipeList,
+        outputList,
+        secondList,
+      }
+
+      const resultArray = this.makeEachRecipeArray(arrayOfLists)
+
+      return resultArray
+    } catch (e) {
+      alert(e)
+    }
+  }
+  //
+  // productionChain(targetResourceName: string) {
+  //   return
+  // }
 }
 
 export default ComponentsIndexRequiredProcess
