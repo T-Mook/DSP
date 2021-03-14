@@ -8,7 +8,7 @@
     </v-card-text>
     <v-card outlined dark>
       <v-card-actions>
-        {{ requiredBuildings(upperResourceName) }}
+        {{ requiredBuildingAndRecipe(upperResourceName) }}
       </v-card-actions>
     </v-card>
   </v-card>
@@ -48,9 +48,8 @@ class ComponentsIndexRequiredProcess extends Vue {
     return result
   }
 
-  returnObjectFromEachRecipe(arrayOfRecipe: Array<string>): object {
-    const result: { [key: string]: any } = {}
-    let i: number = 0
+  returnObjectFromEachRecipe(arrayOfRecipe: Array<string>): Array<object> {
+    const result: Array<object> = []
 
     for (const recipe of arrayOfRecipe) {
       const arrayOfEachResource: Array<string> = this.arrayAfterSlice(
@@ -72,15 +71,16 @@ class ComponentsIndexRequiredProcess extends Vue {
         ingredientsObject[eachResourceName] = eachResourceNumber
       }
 
-      result[String(i)] = ingredientsObject
-      i += 1
+      result.push(ingredientsObject)
     }
 
     return result
   }
 
-  requiredBuildings(finalResourceName: string): object {
+  requiredBuildingAndRecipe(finalResourceName: string): object {
     const datas: { [key: string]: any } = dataEnSample
+    // const totalNameOfResource: Array<string> = Object.keys(datas)
+    // if (finalResourceName in totalNameOfResource) {}
 
     // Handling Recipe
     const totalTextOfRecipe: any = datas[finalResourceName]['recipe']
@@ -89,12 +89,31 @@ class ComponentsIndexRequiredProcess extends Vue {
       '&',
     )
 
-    const resultObject: object = this.returnObjectFromEachRecipe(arrayOfRecipe)
+    const recipeList: Array<object> = this.returnObjectFromEachRecipe(
+      arrayOfRecipe,
+    )
+
+    // Handling Needed Buildings
+    const textOfBuildingName: string = datas[finalResourceName]['producedIn']
+    const buildingList: Array<string> = this.arrayAfterSlice(
+      textOfBuildingName,
+      '&',
+    )
+
+    // Check Value Number of Each List
+    if (recipeList.length !== buildingList.length) {
+      alert(
+        String(recipeList.length) +
+          '개' +
+          String(buildingList.length) +
+          '개' +
+          '목록 숫자가 맞지 않습니다',
+      )
+    }
 
     const result: { [key: string]: any } = {
-      totalTextOfRecipe,
-      arrayOfRecipe,
-      resultObject,
+      buildingList,
+      recipeList,
     }
     return result
   }
