@@ -22,7 +22,7 @@ class ComponentsIndexRequiredProcess extends Vue {
   @Prop({ type: String, default: '' }) upperResourceName!: string
 
   test(searchTarget: string): any {
-    const datas: { [key: string]: any } = dataEnSample[0]
+    const datas: { [key: string]: any } = dataEnSample
     const result: any = datas[searchTarget]
     return result
   }

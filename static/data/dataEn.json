@@ -1,76 +1,782 @@
-[
-    {
-        "Iron Ore":{
-            "index":0,
-            "category":"Ores",
-            "recipe":"Iron Ore Vein",
-            "output":1,
-            "producedSecond":2.0,
-            "producedIn":"Mining machine"
-        },
-        "Copper Ore":{
-            "index":1,
-            "category":"Ores",
-            "recipe":"Copper Ore Vein",
-            "output":1,
-            "producedSecond":2.0,
-            "producedIn":"Mining machine"
-        },
-        "Iron Ingot":{
-            "index":17,
-            "category":"Materials",
-            "recipe":"Iron Ore(1)",
-            "output":1,
-            "producedSecond":1.0,
-            "producedIn":"Smelter"
-        },
-        "Magnet":{
-            "index":18,
-            "category":"Materials",
-            "recipe":"Iron Ore(1)",
-            "output":1,
-            "producedSecond":1.5,
-            "producedIn":"Smelter"
-        },
-        "Magnetic Coil":{
-            "index":19,
-            "category":"Materials",
-            "recipe":"Magnet(2),Copper Ingot(1)",
-            "output":2,
-            "producedSecond":1.0,
-            "producedIn":"Assembling Machine"
-        },
-        "Copper Ingot":{
-            "index":20,
-            "category":"Materials",
-            "recipe":"Copper Ore(1)",
-            "output":1,
-            "producedSecond":1.0,
-            "producedIn":"Smelter"
-        },
-        "Gear":{
-            "index":42,
-            "category":"Components",
-            "recipe":"Iron Ingot(1)",
-            "output":1,
-            "producedSecond":1.0,
-            "producedIn":"Assembling Machine"
-        },
-        "Circuit Board":{
-            "index":43,
-            "category":"Components",
-            "recipe":"Iron Ingot(2),Copper Ingot(1)",
-            "output":2,
-            "producedSecond":1.0,
-            "producedIn":"Assembling Machine"
-        },
-        "Electric Motor":{
-            "index":47,
-            "category":"Components",
-            "recipe":"Iron Ingot(2),Gear(1),Magnetic Coil(1)",
-            "output":1,
-            "producedSecond":2.0,
-            "producedIn":"Assembling Machine"
-        }
+{
+    "Iron ore":{
+        "index":0,
+        "category":"ores",
+        "recipe":"Iron ore vein",
+        "output":"1",
+        "producedSecond":"2",
+        "producedIn":"Mining machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Copper ore":{
+        "index":1,
+        "category":"ores",
+        "recipe":"Copper ore vein",
+        "output":"1",
+        "producedSecond":"2",
+        "producedIn":"Mining machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Stone ore":{
+        "index":2,
+        "category":"ores",
+        "recipe":"Stone ore vein",
+        "output":"1",
+        "producedSecond":"2",
+        "producedIn":"Mining machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Coal ore":{
+        "index":3,
+        "category":"ores",
+        "recipe":"Coal vein",
+        "output":"1",
+        "producedSecond":"2",
+        "producedIn":"Mining machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Silicon ore":{
+        "index":4,
+        "category":"ores",
+        "recipe":"Stone ore(10)&Silicon ore vein",
+        "output":"1&1",
+        "producedSecond":"10&2",
+        "producedIn":"Mining machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Organic crystal":{
+        "index":5,
+        "category":"ores",
+        "recipe":"Plastic(2),Refined Oil(1),Water(1)&Log(20),Plant Fuel(30),Water(10)&Organic crystal vein",
+        "output":"1&1&1",
+        "producedSecond":"6&6&2",
+        "producedIn":"Chemical Plant&Assembling Machine&Mining machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Spiniform stalagmite crystal":{
+        "index":6,
+        "category":"ores",
+        "recipe":"Spiniform stalagmite crystal vein",
+        "output":"1",
+        "producedSecond":"2",
+        "producedIn":"Mining machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Kimberlite ore":{
+        "index":7,
+        "category":"ores",
+        "recipe":"Kimberlite vein",
+        "output":"1",
+        "producedSecond":"2",
+        "producedIn":"Mining machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Fractal silicon":{
+        "index":8,
+        "category":"ores",
+        "recipe":"Fractal silicium vein",
+        "output":"1",
+        "producedSecond":"2",
+        "producedIn":"Mining machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Fire ice":{
+        "index":9,
+        "category":"ores",
+        "recipe":"Fire Ice Vein",
+        "output":"1",
+        "producedSecond":"2",
+        "producedIn":"Mining machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Optical grating crystal":{
+        "index":10,
+        "category":"ores",
+        "recipe":"Optical Grating Crystal vein",
+        "output":"1",
+        "producedSecond":"2",
+        "producedIn":"Mining machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Unipolar magnet":{
+        "index":11,
+        "category":"ores",
+        "recipe":"Unipolar Magnet Vein",
+        "output":"1",
+        "producedSecond":"2",
+        "producedIn":"Mining machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Titanium ore":{
+        "index":12,
+        "category":"ores",
+        "recipe":"Titanium ore vein",
+        "output":"1",
+        "producedSecond":"2",
+        "producedIn":"Mining machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Crude oil":{
+        "index":13,
+        "category":"Liquids",
+        "recipe":"Crude oil vein",
+        "output":"1",
+        "producedSecond":"1",
+        "producedIn":"Oil Extractor",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Refined oil":{
+        "index":14,
+        "category":"Liquids",
+        "recipe":"Crude oil(2)",
+        "output":"2",
+        "producedSecond":"4",
+        "producedIn":"Oil Refinery",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Water":{
+        "index":15,
+        "category":"Liquids",
+        "recipe":"Ocean",
+        "output":"1",
+        "producedSecond":"1.2",
+        "producedIn":"Water Pump",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Sulfuric acid":{
+        "index":16,
+        "category":"Liquids",
+        "recipe":"Refined oil(6),Stone ore(8),Water(4)",
+        "output":"4",
+        "producedSecond":"6",
+        "producedIn":"Chemical Plant",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Iron ingot":{
+        "index":17,
+        "category":"Materials",
+        "recipe":"Iron ore(1)",
+        "output":"1",
+        "producedSecond":"1",
+        "producedIn":"Smelter",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Magnet":{
+        "index":18,
+        "category":"Materials",
+        "recipe":"Iron ore(1)",
+        "output":"1",
+        "producedSecond":"1.5",
+        "producedIn":"Smelter",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Magnetic Coil":{
+        "index":19,
+        "category":"Materials",
+        "recipe":"Magnet(2),Copper ingot(1)",
+        "output":"2",
+        "producedSecond":"1",
+        "producedIn":"Assembling Machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Copper ingot":{
+        "index":20,
+        "category":"Materials",
+        "recipe":"Copper ore(1)",
+        "output":"1",
+        "producedSecond":"1",
+        "producedIn":"Smelter",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Stone Brick":{
+        "index":21,
+        "category":"Materials",
+        "recipe":"Stone(1)",
+        "output":"1",
+        "producedSecond":"1",
+        "producedIn":"Smelter",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Glass":{
+        "index":22,
+        "category":"Materials",
+        "recipe":"Stone(2)",
+        "output":"1",
+        "producedSecond":"2",
+        "producedIn":"Smelter",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Prism":{
+        "index":23,
+        "category":"Materials",
+        "recipe":"Glass(3)",
+        "output":"2",
+        "producedSecond":"2",
+        "producedIn":"Assembling Machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Diamond":{
+        "index":24,
+        "category":"Materials",
+        "recipe":"Energetic graphite(1)",
+        "output":"1",
+        "producedSecond":"2",
+        "producedIn":"Smelter",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "High-Purity Silicon":{
+        "index":25,
+        "category":"Materials",
+        "recipe":"Silicon ore(2)",
+        "output":"1",
+        "producedSecond":"2",
+        "producedIn":"Smelter",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Crystal silicon":{
+        "index":26,
+        "category":"Materials",
+        "recipe":"High-Purity Silicon(1)&Fractal Silicon(1)",
+        "output":"1&1",
+        "producedSecond":"2&4",
+        "producedIn":"Smelter&Assembling Machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Steel":{
+        "index":27,
+        "category":"Materials",
+        "recipe":"Iron ingot(3)",
+        "output":"1",
+        "producedSecond":"3",
+        "producedIn":"Smelter",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Plastic":{
+        "index":28,
+        "category":"Materials",
+        "recipe":"Refined Oil(2),Energetic Graphite(1)",
+        "output":"1",
+        "producedSecond":"3",
+        "producedIn":"Chemical Plant",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Graphene":{
+        "index":29,
+        "category":"Materials",
+        "recipe":"Energetic Graphite(3),Sulfuric Acid(1)&Fire Ice(2)",
+        "output":"2&2",
+        "producedSecond":"3&2",
+        "producedIn":"Chemical Plant&Chemical Plant",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Carbon nanotube":{
+        "index":30,
+        "category":"Materials",
+        "recipe":"Graphene(3),Titanium Ingot(1)&Spiniform Stalagmite Crystal(2)",
+        "output":"2&2",
+        "producedSecond":"4&4",
+        "producedIn":"Chemical Plant&Chemical Plant",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Titanium ingot":{
+        "index":31,
+        "category":"Materials",
+        "recipe":"Titanium ore(2)",
+        "output":"1",
+        "producedSecond":"2",
+        "producedIn":"Smelter",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Titanium alloy":{
+        "index":32,
+        "category":"Materials",
+        "recipe":"Titanium ingot(4),Steel(4),Sulfuric acid(8)",
+        "output":"4",
+        "producedSecond":"12",
+        "producedIn":"Smelter",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Titanium crystal":{
+        "index":33,
+        "category":"Materials",
+        "recipe":"Organic Crystal(1),Titanium ingot(3)",
+        "output":"1",
+        "producedSecond":"4",
+        "producedIn":"Assembling Machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Titanium glass":{
+        "index":34,
+        "category":"Materials",
+        "recipe":"Glass(2),Titanium Ingot(2),Water(2)",
+        "output":"2",
+        "producedSecond":"5",
+        "producedIn":"Assembling Machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Hydrogen":{
+        "index":35,
+        "category":"Materials",
+        "recipe":"Crude oil(2)&Fire Ice(2)&Hydrogen(2),Refined oil(1)&Critical Photon(2)",
+        "output":"1&1&3&2",
+        "producedSecond":"4&2&4&2",
+        "producedIn":"Oil Refinery&Chemical Plant&Oil Refinery&Miniature Particle Collider",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Deuterium":{
+        "index":36,
+        "category":"Materials",
+        "recipe":"Hydrogen(10)",
+        "output":"5",
+        "producedSecond":"5",
+        "producedIn":"Miniature Particle Collider",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Critical photon":{
+        "index":37,
+        "category":"Materials",
+        "recipe":"Ray Receiver",
+        "output":"0",
+        "producedSecond":"0",
+        "producedIn":"Ray Receiver",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Antimatter":{
+        "index":38,
+        "category":"Materials",
+        "recipe":"Crotical Photon(2)",
+        "output":"2",
+        "producedSecond":"2",
+        "producedIn":"Miniature Particle Collider",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Strange matter":{
+        "index":39,
+        "category":"Materials",
+        "recipe":"Particle Container(2),Iron Ingot(2),Deuterium(10)",
+        "output":"1",
+        "producedSecond":"8",
+        "producedIn":"Miniature Particle Collider",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Frame material":{
+        "index":40,
+        "category":"Materials",
+        "recipe":"Carbon Nanotube(4),Titanium Alloy(1),High-Purity Silicon(1)",
+        "output":"1",
+        "producedSecond":"6",
+        "producedIn":"Assembling Machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Casimir crystal":{
+        "index":41,
+        "category":"Materials",
+        "recipe":"Titanium Crystal(1),Graphene(2),Hydrogen(12)&Optical Grating Crystal(6),Graphene(2),Hydrogen(12)",
+        "output":"1&1",
+        "producedSecond":"4&4",
+        "producedIn":"Assembling Machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Gear":{
+        "index":42,
+        "category":"Components",
+        "recipe":"Iron ingot(1)",
+        "output":"1",
+        "producedSecond":"1",
+        "producedIn":"Assembling Machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Circuit Board":{
+        "index":43,
+        "category":"Components",
+        "recipe":"Iron ingot(2),Copper ingot(1)",
+        "output":"2",
+        "producedSecond":"1",
+        "producedIn":"Assembling Machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Microcrystalline component":{
+        "index":44,
+        "category":"Components",
+        "recipe":"High-Purity Silicon(2),Copper ingot(1)",
+        "output":"1",
+        "producedSecond":"2",
+        "producedIn":"Assembling Machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Plasma Exciter":{
+        "index":45,
+        "category":"Components",
+        "recipe":"Magnetic Coil(4),Prism(2)",
+        "output":"1",
+        "producedSecond":"2",
+        "producedIn":"Assembling Machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Photon combiner":{
+        "index":46,
+        "category":"Components",
+        "recipe":"Prism(2),Circuit Board(1)&Optical Grating Crystal(1),Circuit Board(1)",
+        "output":"1&1",
+        "producedSecond":"3&3",
+        "producedIn":"Assembling Machine&Assembling Machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Electric Motor":{
+        "index":47,
+        "category":"Components",
+        "recipe":"Iron ingot(2),Gear(1),Magnetic Coil(1)",
+        "output":"1",
+        "producedSecond":"2",
+        "producedIn":"Assembling Machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Electromagnetic turbine":{
+        "index":48,
+        "category":"Components",
+        "recipe":"Electric Motor(2),Magnetic Coil(2)",
+        "output":"1",
+        "producedSecond":"2",
+        "producedIn":"Assembling Machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Processor":{
+        "index":49,
+        "category":"Components",
+        "recipe":"Circuit Board(2),Microcrystalline component(2)",
+        "output":"1",
+        "producedSecond":"3",
+        "producedIn":"Assembling Machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Plane filter":{
+        "index":50,
+        "category":"Components",
+        "recipe":"Casimir Crystal(1),Titanium Glass(2)",
+        "output":"1",
+        "producedSecond":"12",
+        "producedIn":"Assembling Machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Particle container":{
+        "index":51,
+        "category":"Components",
+        "recipe":"Electromagnetic Turbine(2),Copper Ingot(2),Graphene(2)&Unipolar Magnet(10),Copper Ingot(2)",
+        "output":"1&1",
+        "producedSecond":"4&4",
+        "producedIn":"Assembling Machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Super-magnetic ring":{
+        "index":52,
+        "category":"Components",
+        "recipe":"Electromagnetic Turbine(2),Magnet(3),Energetic Graphite(1)",
+        "output":"1",
+        "producedSecond":"3",
+        "producedIn":"Assembling Machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Graviton lens":{
+        "index":53,
+        "category":"Components",
+        "recipe":"Diamond(4),Strange Matter(1)",
+        "output":"1",
+        "producedSecond":"6",
+        "producedIn":"Assembling Machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Particle broadband":{
+        "index":54,
+        "category":"Components",
+        "recipe":"Carbon Nanotube(2),Crystal Silicon(2),Plastic(1)",
+        "output":"1",
+        "producedSecond":"8",
+        "producedIn":"Assembling Machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Quantum chip":{
+        "index":55,
+        "category":"Components",
+        "recipe":"Processor(2),Plane Filter(2)",
+        "output":"1",
+        "producedSecond":"6",
+        "producedIn":"Assembling Machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Annihilation constraint sphere":{
+        "index":56,
+        "category":"Components",
+        "recipe":"Particle Container(1),Processor(1)",
+        "output":"1",
+        "producedSecond":"20",
+        "producedIn":"Assembling Machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Thruster":{
+        "index":57,
+        "category":"Components",
+        "recipe":"Steel(2),Copper ingot(3)",
+        "output":"1",
+        "producedSecond":"4",
+        "producedIn":"Assembling Machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Reinforced thruster":{
+        "index":58,
+        "category":"Components",
+        "recipe":"Titanium Alloy(5),Electromagnetic Turbine(5)",
+        "output":"1",
+        "producedSecond":"6",
+        "producedIn":"Assembling Machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Space warper":{
+        "index":59,
+        "category":"Components",
+        "recipe":"Graviton Lens(1)&Gravity Matrix(1)",
+        "output":"1&8",
+        "producedSecond":"10&10",
+        "producedIn":"Assembling Machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Plant fuel":{
+        "index":60,
+        "category":"Fuels",
+        "recipe":"Plant",
+        "output":"1",
+        "producedSecond":"1",
+        "producedIn":"Plant",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Log":{
+        "index":61,
+        "category":"Fuels",
+        "recipe":"Tree",
+        "output":"1",
+        "producedSecond":"1",
+        "producedIn":"Tree",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Energetic Graphite":{
+        "index":62,
+        "category":"Fuels",
+        "recipe":"Coal(2)&Refined Oil(1),Hydrogen(2)",
+        "output":"1&1",
+        "producedSecond":"2&4",
+        "producedIn":"Smelter&Oil Refinery",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Hydrogen fuel rod":{
+        "index":63,
+        "category":"Fuels",
+        "recipe":"Titanium ingot(1),Hydrogen(5)",
+        "output":"1",
+        "producedSecond":"3",
+        "producedIn":"Assembling Machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Deuterium fuel rod":{
+        "index":64,
+        "category":"Fuels",
+        "recipe":"Titanium alloy(1),Deuterium(10),Super-magnetic ring(1)",
+        "output":"1",
+        "producedSecond":"6",
+        "producedIn":"Assembling Machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Antimatter fuel rod":{
+        "index":65,
+        "category":"Fuels",
+        "recipe":"Antimatter(1),Hydrogen(10),Annihilation constraint sphere(1),Titanium alloy(1)",
+        "output":"1",
+        "producedSecond":"12",
+        "producedIn":"Assembling Machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Electromagnetic matrix":{
+        "index":66,
+        "category":"Science Matrix",
+        "recipe":"Magnetic Coil(1),Circuit Board(1)",
+        "output":"1",
+        "producedSecond":"3",
+        "producedIn":"Research Facility",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Energy matrix":{
+        "index":67,
+        "category":"Science Matrix",
+        "recipe":"Energetic Graphite(2),Hydrogen(2)",
+        "output":"1",
+        "producedSecond":"6",
+        "producedIn":"Research Facility",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Structure matrix":{
+        "index":68,
+        "category":"Science Matrix",
+        "recipe":"Diamond(1),Titanium Crystal(1)",
+        "output":"1",
+        "producedSecond":"8",
+        "producedIn":"Research Facility",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Information matrix":{
+        "index":69,
+        "category":"Science Matrix",
+        "recipe":"Processor(2),Particle Broadband(1)",
+        "output":"1",
+        "producedSecond":"10",
+        "producedIn":"Research Facility",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Gravity matrix":{
+        "index":70,
+        "category":"Science Matrix",
+        "recipe":"Graviton Lens(1),Quantum Chip(1)",
+        "output":"2",
+        "producedSecond":"24",
+        "producedIn":"Research Facility",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Universe matrix":{
+        "index":71,
+        "category":"Science Matrix",
+        "recipe":"Electromagnetic matrix(1),Energy matrix(1),Structure matrix(1),Information matrix(1),Gravity matrix(1),Antimatter(1)",
+        "output":"1",
+        "producedSecond":"15",
+        "producedIn":"Research Facility",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Solar sail":{
+        "index":72,
+        "category":"Special",
+        "recipe":"Graphene(1),Photon Combiner(1)",
+        "output":"2",
+        "producedSecond":"4",
+        "producedIn":"Assembling Machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Dyson sphere component":{
+        "index":73,
+        "category":"Special",
+        "recipe":"Frame Material(3),Solar Sail(3),Processor(3)",
+        "output":"1",
+        "producedSecond":"8",
+        "producedIn":"Assembling Machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Logistics Drone":{
+        "index":74,
+        "category":"Logistics",
+        "recipe":"Iron Ingot(5),Processor(2),Thruster(2)",
+        "output":"1",
+        "producedSecond":"4",
+        "producedIn":"Assembling Machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Logistics Vessel":{
+        "index":75,
+        "category":"Logistics",
+        "recipe":"Titanium Alloy(10),Processor(10),Reinforced Thruster(2)",
+        "output":"1",
+        "producedSecond":"6",
+        "producedIn":"Assembling Machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Foundation":{
+        "index":76,
+        "category":"Components",
+        "recipe":"Stone Brick(3),Steel(1)",
+        "output":"1",
+        "producedSecond":"1",
+        "producedIn":"Assembling Machine",
+        "time":20210314,
+        "timeModify":20210314
+    },
+    "Small Carrier Rocket":{
+        "index":77,
+        "category":"End Product",
+        "recipe":"Dyson Sphere Component(2),Deuteron Fuel Rod(2),Quantum Chip(2)",
+        "output":"1",
+        "producedSecond":"6",
+        "producedIn":"Assembling Machine",
+        "time":20210314,
+        "timeModify":20210314
     }
-]
+}

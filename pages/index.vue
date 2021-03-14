@@ -23,7 +23,7 @@ import dataEnSample from '~/static/data/dataEn.json'
 
 @Component({
   asyncData() {
-    const totalNameOfResource: Array<string> = Object.keys(dataEnSample[0])
+    const totalNameOfResource: Array<string> = Object.keys(dataEnSample)
     return { totalNameOfResource }
   },
   components: {
