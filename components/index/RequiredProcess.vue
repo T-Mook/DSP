@@ -103,18 +103,13 @@ class ComponentsIndexRequiredProcess extends Vue {
 
   inputLowerMaterialProductionInfoArray(
     neededList: Array<{ [key: string]: any }>,
+    arrayOfRecord: Array<string>,
   ): Array<object> {
     const resultNeededList: Array<object> = []
 
     for (const obj of neededList) {
-      // const building: string = obj['building']
-      // const output: number = Number(obj['output'])
-      // const second: number = Number(obj['second'])
-
       // recipe Infos
       const recipe: object = obj['recipe']
-      // const resourceName: Array<string> = Object.keys(recipe)
-      // const recipeNumber: number = resourceName.length
       const resourceEntries: Array<any> = Object.entries(recipe)
 
       const mNameObject: { [key: string]: any } = {}
@@ -123,8 +118,27 @@ class ComponentsIndexRequiredProcess extends Vue {
         const mName: string = materialInfo[0]
         const mNumber: number = materialInfo[1]
 
-        const lowerNeededList: Array<object> = this.returnNeededList(mName)
-        mNameObject[mName] = [mNumber, lowerNeededList]
+        let lowerNeededList: Array<{
+          [key: string]: any
+        }> = this.returnNeededList(mName)
+
+        // Conditions to prevent RangeError: Maximum call stack size exceeded
+        // console.log(lowerNeededList[0])
+        const condition1: boolean = mNumber !== null
+        const condition2: boolean = lowerNeededList[0] !== undefined
+        const condition3: boolean = !arrayOfRecord.includes(mName)
+
+        if (condition1 && condition2 && condition3) {
+          arrayOfRecord.push(mName) // recording for prevent to infinite loop
+
+          lowerNeededList = this.inputLowerMaterialProductionInfoArray(
+            lowerNeededList,
+            arrayOfRecord,
+          )
+          mNameObject[mName] = [mNumber, lowerNeededList]
+        } else {
+          mNameObject[mName] = [mNumber, lowerNeededList]
+        }
       }
 
       obj['recipeDetail'] = mNameObject
@@ -196,7 +210,10 @@ class ComponentsIndexRequiredProcess extends Vue {
   requiredBuildingAndRecipe(targetResourceName: string): object | undefined {
     try {
       const neededList = this.returnNeededList(targetResourceName)
-      const resultArray = this.inputLowerMaterialProductionInfoArray(neededList)
+      const resultArray = this.inputLowerMaterialProductionInfoArray(
+        neededList,
+        [],
+      )
 
       return resultArray
     } catch (e) {
