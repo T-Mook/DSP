@@ -1,21 +1,53 @@
 <template>
   <v-card tile flat color="rgba(0,0,0,0)">
-    <v-card-title>
-      {{ upperResourceName }}
-    </v-card-title>
-    <v-card-text>
-      {{ test(upperResourceName) }}
-    </v-card-text>
-    <v-card outlined dark>
-      <v-card-actions>
-        {{ requiredBuildingAndRecipe(upperResourceName) }}
-      </v-card-actions>
+    <v-card-text class="d-flex justify-center">{{ formulaText }}</v-card-text>
+    <!-- Start : Print Required Building name And Recipe-->
+    <v-card
+      v-for="(obj, index) in requiredBuildingAndRecipe(upperResourceName)"
+      :key="index"
+      outlined
+      flat
+      class="my-4 pa-4"
+    >
+      <v-card-title>
+        {{ upperResourceName }} 생산 위한 {{ obj.building }} 1대당 적정 하위
+        건물수
+      </v-card-title>
+      <v-card-text>
+        <p>
+          {{ obj.second }}초당 {{ obj.output }}개의 {{ upperResourceName }} 생산
+        </p>
+      </v-card-text>
+      <!-- Start : Print Building and Number Of Lower Production-->
+      <v-card
+        v-for="(key, lowerIndex) in Object.keys(obj.recipeDetail)"
+        :key="lowerIndex"
+        outlined
+        flat
+        class="my-4"
+      >
+        <v-card-title v-if="obj.recipeDetail[key][2] !== null">
+          '{{ key }}' 생산용 '{{ obj.recipeDetail[key][2][0] }}'
+          {{ obj.recipeDetail[key][2][1] }} 개
+        </v-card-title>
+        <v-card-title v-else>{{ key }}는 추출</v-card-title>
+        <v-card-text>
+          <p>필요 재료 개수 : {{ obj.recipeDetail[key][0] }}</p>
+          <p>전체 레시피 상세 : {{ obj.recipeDetail[key][1] }}</p>
+        </v-card-text>
+      </v-card>
+      <v-divider class="ma-1" />
+      <v-card outlined flat class="my-4">
+        <v-card-actions>
+          {{ obj }}
+        </v-card-actions>
+      </v-card>
     </v-card>
   </v-card>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'nuxt-property-decorator'
+import { Component, Provide, Prop, Vue } from 'nuxt-property-decorator'
 import dataEnSample from '~/static/data/dataEn.json'
 
 @Component({
@@ -26,9 +58,31 @@ import dataEnSample from '~/static/data/dataEn.json'
 class ComponentsIndexRequiredProcess extends Vue {
   @Prop({ type: String, default: '' }) upperResourceName!: string
 
+  @Provide() formulaText: string =
+    '*생산 공장 1개당 재료 공장 수 = (필요 재료 수 * 재료 생산 시간<초>) / (최종물 생산시간<초> * 재료 생산 개수)'
+
   test(searchTarget: string): any {
     const datas: { [key: string]: any } = dataEnSample
     const result: any = datas[searchTarget]
+    return result
+  }
+
+  calculatorForoptimalBuildingNumber(obj: { [key: string]: number }): number {
+    // 원하는 생산물 생산에 필요한 재료 수를 계속 수급하는데 필요한 공장 수
+    // 필요 재료 수 / 최종물 생산시간<초> = (재료 생산 개수 / 재료 생산 시간<초>) * 재료 공장 수
+    // > 생산 공장 1개당 재료 공장 수 = (필요 재료 수 * 재료 생산 시간<초>) / (최종물 생산시간<초> * 재료 생산 개수)
+    const neededResourceNumber: number = obj['neededResourceNumber']
+    const neededResourceProductionSecond: number =
+      obj['neededResourceProductionSecond']
+    const neededResourceProductionNumber: number =
+      obj['neededResourceProductionNumber']
+    const targetProductionSecond: number = obj['targetProductionSecond']
+
+    const buildingNumber: number =
+      (neededResourceNumber * neededResourceProductionSecond) /
+      (targetProductionSecond * neededResourceProductionNumber)
+
+    const result: number = buildingNumber
     return result
   }
 
@@ -108,15 +162,18 @@ class ComponentsIndexRequiredProcess extends Vue {
     const resultNeededList: Array<object> = []
 
     for (const obj of neededList) {
-      // recipe Infos
+      // Target Production Infos
+      const targetProductionSecond: number = Number(obj['second'])
+
+      // Recipe Infos
       const recipe: object = obj['recipe']
-      const resourceEntries: Array<any> = Object.entries(recipe)
+      const resourceEntries: Array<any> = Object.entries(recipe) // [ 재료 이름, 필요 재료 개수 ]
 
       const mNameObject: { [key: string]: any } = {}
 
       for (const materialInfo of resourceEntries) {
-        const mName: string = materialInfo[0]
-        const mNumber: number = materialInfo[1]
+        const mName: string = materialInfo[0] // 재료 이름
+        const mNumber: number = materialInfo[1] // 필요 재료 개수
 
         let lowerNeededList: Array<{
           [key: string]: any
@@ -128,6 +185,7 @@ class ComponentsIndexRequiredProcess extends Vue {
         const condition2: boolean = lowerNeededList[0] !== undefined
         const condition3: boolean = !arrayOfRecord.includes(mName)
 
+        // Run recursive function in specific condition
         if (condition1 && condition2 && condition3) {
           arrayOfRecord.push(mName) // recording for prevent to infinite loop
 
@@ -135,9 +193,44 @@ class ComponentsIndexRequiredProcess extends Vue {
             lowerNeededList,
             arrayOfRecord,
           )
-          mNameObject[mName] = [mNumber, lowerNeededList]
+
+          // Calculate Optimal Building Number for Producing a Resource
+          const lowerBuildingName: string = lowerNeededList[0]['building']
+          const lowerProductionOutput: number = Number(
+            lowerNeededList[0]['output'],
+          )
+          const lowerProducedSecond: number = Number(
+            lowerNeededList[0]['second'],
+          )
+          const targetObject: { [key: string]: any } = {
+            neededResourceNumber: mNumber,
+            neededResourceProductionSecond: lowerProducedSecond,
+            neededResourceProductionNumber: lowerProductionOutput,
+            targetProductionSecond,
+          }
+
+          const optimalBuildingNumberForResource: number = this.calculatorForoptimalBuildingNumber(
+            targetObject,
+          )
+
+          const buildingNameAndOptimalNumber: Array<string | number> = [
+            lowerBuildingName,
+            optimalBuildingNumberForResource,
+          ]
+
+          mNameObject[mName] = [
+            mNumber,
+            lowerNeededList,
+            buildingNameAndOptimalNumber,
+          ]
         } else {
-          mNameObject[mName] = [mNumber, lowerNeededList]
+          const buildingNameAndOptimalNumber: null = null
+
+          mNameObject[mName] = [
+            mNumber,
+            lowerNeededList,
+            buildingNameAndOptimalNumber,
+          ]
         }
       }
 

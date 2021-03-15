@@ -302,7 +302,7 @@
     "Carbon nanotube":{
         "index":30,
         "category":"Materials",
-        "recipe":"Graphene(3),Titanium Ingot(1)&Spiniform Stalagmite Crystal(2)",
+        "recipe":"Graphene(3),Titanium ingot(1)&Spiniform Stalagmite Crystal(2)",
         "output":"2&2",
         "producedSecond":"4&4",
         "producedIn":"Chemical Plant&Chemical Plant",
@@ -342,7 +342,7 @@
     "Titanium glass":{
         "index":34,
         "category":"Materials",
-        "recipe":"Glass(2),Titanium Ingot(2),Water(2)",
+        "recipe":"Glass(2),Titanium ingot(2),Water(2)",
         "output":"2",
         "producedSecond":"5",
         "producedIn":"Assembling Machine",
@@ -392,7 +392,7 @@
     "Strange matter":{
         "index":39,
         "category":"Materials",
-        "recipe":"Particle Container(2),Iron Ingot(2),Deuterium(10)",
+        "recipe":"Particle Container(2),Iron ingot(2),Deuterium(10)",
         "output":"1",
         "producedSecond":"8",
         "producedIn":"Miniature Particle Collider",
@@ -512,7 +512,7 @@
     "Particle container":{
         "index":51,
         "category":"Components",
-        "recipe":"Electromagnetic Turbine(2),Copper Ingot(2),Graphene(2)&Unipolar Magnet(10),Copper Ingot(2)",
+        "recipe":"Electromagnetic Turbine(2),Copper ingot(2),Graphene(2)&Unipolar Magnet(10),Copper ingot(2)",
         "output":"1&1",
         "producedSecond":"4&4",
         "producedIn":"Assembling Machine",
@@ -742,7 +742,7 @@
     "Logistics Drone":{
         "index":74,
         "category":"Logistics",
-        "recipe":"Iron Ingot(5),Processor(2),Thruster(2)",
+        "recipe":"Iron ingot(5),Processor(2),Thruster(2)",
         "output":"1",
         "producedSecond":"4",
         "producedIn":"Assembling Machine",
