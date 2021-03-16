@@ -2,8 +2,8 @@
   <v-app>
     <v-app-bar :color="appBar.color" max-height="50" dense flat>
       <v-spacer />
-      <v-app-bar-title class="white--text">
-        <small>{{ appBar.title }}</small>
+      <v-app-bar-title class="bar-title-text">
+        {{ appBar.title }}
       </v-app-bar-title>
       <v-spacer />
     </v-app-bar>
@@ -24,9 +24,17 @@ import MainFooter from '@/components/default/MainFooter.vue'
 })
 class LayoutDefault extends Vue {
   @Provide() appBar: { title: string; color: string } = {
-    title: '다이슨 스피어 프로그램 공장 최적화 도우미',
+    title: 'DYSON SPHERE PROGRAM 공장 최적화 도우미',
     color: 'rgba(21,31,32,1)',
   }
 }
 export default LayoutDefault
 </script>
+
+<style scoped>
+.bar-title-text {
+  font-size: 18px;
+  color: white;
+  font-weight: 900;
+}
+</style>

@@ -1,17 +1,26 @@
 <template>
-  <v-card tile flat color="rgba(0,0,0,0)">
+  <v-card flat color="rgba(0,0,0,0)">
     <!-- Start : Print Required Building name And Recipe-->
     <v-card
       v-for="(obj, index) in requiredBuildingAndRecipe(upperResourceName)"
       :key="index"
       outlined
       flat
-      class="my-4 pa-4"
+      class="my-4 px-4 pb-4"
     >
       <v-card-title>
+        <!-- Start: img -->
+        <v-avatar>
+          <v-img
+            height="20"
+            width="20"
+            src="https://dsp-wiki.com/images/2/2a/Icon_Crystal_Silicon.png"
+            contain
+          />
+        </v-avatar>
         {{ upperResourceName }} 생산용 {{ obj.building }} 1대당 필요 하위 건물수
       </v-card-title>
-      <v-list-item three-line>
+      <v-list-item two-line>
         <v-list-item-content>
           <v-list-item-subtitle>
             > 생산 정보 : {{ obj.building }}에서 {{ obj.second }}초당

@@ -1,5 +1,5 @@
 <template>
-  <v-card-text class="d-flex justify-right grey--text py-0 ml-2">
+  <v-card-text class="d-flex justify-right grey--text py-0 ml-3">
     <small>{{ text }}</small>
   </v-card-text>
 </template>

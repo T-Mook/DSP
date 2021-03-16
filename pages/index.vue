@@ -1,17 +1,30 @@
 <template>
   <v-row justify="center" align="center">
-    <v-card :max-width="mainCardMaxWidth" flat tile color="rgba(0,0,0,0)">
+    <v-card :max-width="mainCardMaxWidth" flat color="rgba(0,0,0,0)">
       <!-- ### Start : Search Bar ### -->
-      <v-autocomplete
-        v-model="resourceName"
-        :items="totalNameOfResource"
-        dense
-        filled
-        label="생산 목표 자원"
-        class="my-4"
-      ></v-autocomplete>
+      <v-card-actions class="d-flex justify-center">
+        <v-card flat max-width="400" class="mt-4 py-0">
+          <v-autocomplete
+            v-model="resourceName"
+            :items="totalNameOfResource"
+            dense
+            filled
+            hide-details
+            label="생산 목표 자원"
+          ></v-autocomplete>
+        </v-card>
+      </v-card-actions>
       <!-- ### Start : All Required Process ### -->
       <required-process :upper-resource-name="resourceName" />
+      <v-card-actions class="justify-center mt-2">
+        <v-btn
+          href="https://store.steampowered.com/app/1366540/Dyson_Sphere_Program/"
+          color="blue lighten-1"
+          outlined
+        >
+          Buy Here! (Steam)
+        </v-btn>
+      </v-card-actions>
     </v-card>
   </v-row>
 </template>
