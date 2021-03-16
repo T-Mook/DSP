@@ -39,6 +39,8 @@ export default {
     '@nuxtjs/vuetify',
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
+    // https://google-analytics.nuxtjs.org/setup
+    '@nuxtjs/google-analytics',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -46,6 +48,11 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
+
+  // pass your Google Analytics ID to id field of googleAnalytics
+  googleAnalytics: {
+    id: '265810776',
+  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
