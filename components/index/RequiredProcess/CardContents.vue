@@ -1,15 +1,14 @@
 <template>
   <v-card outlined flat class="my-4 pa-4">
-    <v-card-title v-if="obj.recipeDetail[objKey][2] !== null">
+    <v-card-title v-if="obj.recipeDetail[objKey][2] !== null" class="py-0">
       '{{ objKey }}' 생산용 '{{ obj.recipeDetail[objKey][2][0] }}'
-      {{ obj.recipeDetail[objKey][2][1] }} 개
+      {{ Math.ceil(obj.recipeDetail[objKey][2][1]) }} 대
     </v-card-title>
-    <v-card-title v-else>{{ objKey }}는 추출</v-card-title>
-    <v-list-item three-line>
-      <v-list-item-content>
-        <v-list-item-title>기본 정보</v-list-item-title>
+    <v-card-title v-else class="py-0">{{ objKey }}는 추출</v-card-title>
+    <v-list-item>
+      <v-list-item-content class="py-0">
         <v-list-item-subtitle>
-          '{{ objKey }}' 필요 개수 : {{ obj.recipeDetail[objKey][0] }}
+          > 요구 '{{ objKey }}' 개수 : {{ obj.recipeDetail[objKey][0] }}
         </v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>

@@ -14,10 +14,11 @@
       <v-list-item three-line>
         <v-list-item-content>
           <v-list-item-subtitle>
-            {{ obj.building }}: {{ obj.second }}초당 {{ obj.output }}개의
-            {{ upperResourceName }} 생산
+            > 생산 정보 : {{ obj.building }}에서 {{ obj.second }}초당
+            {{ obj.output }}개의 {{ upperResourceName }} 생산
           </v-list-item-subtitle>
           <v-list-item-subtitle>
+            <span>> 총 필요 재료:</span>
             <span
               v-for="(r, rIndex) in Object.entries(obj.recipe)"
               :key="rIndex"
@@ -26,8 +27,10 @@
               <span>{{ r[0] }}</span>
               <span v-if="!Number.isNaN(r[1])">{{ r[1] }}개</span>
               <span v-else class="ml-1">필요</span>
-              <span v-if="Object.entries(obj.recipe).length - 1 !== rIndex"
-                >,
+              <span
+                v-if="Object.entries(obj.recipe).length - 1 !== rIndex"
+                class="ml-1"
+                >+
               </span>
             </span>
           </v-list-item-subtitle>
