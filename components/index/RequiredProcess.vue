@@ -167,6 +167,7 @@ class ComponentsIndexRequiredProcess extends Vue {
   }
 
   inputLowerMaterialProductionInfoArray(
+    higherStageResourceName: string,
     neededList: Array<{ [key: string]: any }>,
     arrayOfRecord: Array<string>,
   ): Array<object> {
@@ -191,16 +192,19 @@ class ComponentsIndexRequiredProcess extends Vue {
         }> = this.returnNeededList(mName)
 
         // Conditions to prevent RangeError: Maximum call stack size exceeded
-        // console.log(lowerNeededList[0])
         const condition1: boolean = mNumber !== null
         const condition2: boolean = lowerNeededList[0] !== undefined
-        const condition3: boolean = !arrayOfRecord.includes(mName)
+
+        // Black List : Same Higher & Lower Stage Resource Name
+        const wordsForRestrict: string = higherStageResourceName + '&' + mName
+        const condition3: boolean = !arrayOfRecord.includes(wordsForRestrict)
 
         // Run recursive function in specific condition
         if (condition1 && condition2 && condition3) {
-          arrayOfRecord.push(mName) // recording for prevent to infinite loop
+          arrayOfRecord.push(wordsForRestrict) // recording for prevent to infinite loop
 
           lowerNeededList = this.inputLowerMaterialProductionInfoArray(
+            mName,
             lowerNeededList,
             arrayOfRecord,
           )
@@ -315,6 +319,7 @@ class ComponentsIndexRequiredProcess extends Vue {
     try {
       const neededList = this.returnNeededList(targetResourceName)
       const resultArray = this.inputLowerMaterialProductionInfoArray(
+        targetResourceName,
         neededList,
         [],
       )
