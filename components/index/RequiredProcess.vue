@@ -1,6 +1,5 @@
 <template>
   <v-card tile flat color="rgba(0,0,0,0)">
-    <v-card-text class="d-flex justify-center">{{ formulaText }}</v-card-text>
     <!-- Start : Print Required Building name And Recipe-->
     <v-card
       v-for="(obj, index) in requiredBuildingAndRecipe(upperResourceName)"
@@ -10,47 +9,59 @@
       class="my-4 pa-4"
     >
       <v-card-title>
-        {{ upperResourceName }} 생산 위한 {{ obj.building }} 1대당 적정 하위
-        건물수
+        {{ upperResourceName }} 생산용 {{ obj.building }} 1대당 필요 하위 건물수
       </v-card-title>
-      <v-card-text>
-        <p>
-          {{ obj.second }}초당 {{ obj.output }}개의 {{ upperResourceName }} 생산
-        </p>
-      </v-card-text>
+      <v-list-item three-line>
+        <v-list-item-content>
+          <v-list-item-subtitle>
+            {{ obj.building }}: {{ obj.second }}초당 {{ obj.output }}개의
+            {{ upperResourceName }} 생산
+          </v-list-item-subtitle>
+          <v-list-item-subtitle>
+            <span
+              v-for="(r, rIndex) in Object.entries(obj.recipe)"
+              :key="rIndex"
+              class="mr-1"
+            >
+              <span>{{ r[0] }}</span>
+              <span v-if="!Number.isNaN(r[1])">{{ r[1] }}개</span>
+              <span v-else class="ml-1">필요</span>
+              <span v-if="Object.entries(obj.recipe).length - 1 !== rIndex"
+                >,
+              </span>
+            </span>
+          </v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
       <!-- Start : Print Building and Number Of Lower Production-->
-      <v-card
-        v-for="(key, lowerIndex) in Object.keys(obj.recipeDetail)"
+      <div
+        v-for="(objKey, lowerIndex) in Object.keys(obj.recipeDetail)"
         :key="lowerIndex"
-        outlined
-        flat
-        class="my-4"
       >
-        <v-card-title v-if="obj.recipeDetail[key][2] !== null">
-          '{{ key }}' 생산용 '{{ obj.recipeDetail[key][2][0] }}'
-          {{ obj.recipeDetail[key][2][1] }} 개
-        </v-card-title>
-        <v-card-title v-else>{{ key }}는 추출</v-card-title>
-        <v-card-text>
-          <p>필요 재료 개수 : {{ obj.recipeDetail[key][0] }}</p>
-          <p>전체 레시피 상세 : {{ obj.recipeDetail[key][1] }}</p>
-        </v-card-text>
-      </v-card>
-      <v-divider class="ma-1" />
-      <v-card outlined flat class="my-4">
-        <v-card-actions>
-          {{ obj }}
-        </v-card-actions>
-      </v-card>
+        <card-contents
+          v-if="obj.recipeDetail[objKey][2] !== null"
+          :obj="obj"
+          :obj-key="objKey"
+        />
+        <no-lower-stage v-else />
+      </div>
     </v-card>
+    <!-- Using Formula -->
+    <v-card-text class="d-flex justify-center">{{ formulaText }}</v-card-text>
   </v-card>
 </template>
 
 <script lang="ts">
 import { Component, Provide, Prop, Vue } from 'nuxt-property-decorator'
+import CardContents from '@/components/index/RequiredProcess/CardContents.vue'
+import NoLowerStage from '@/components/index/RequiredProcess/NoLowerStage.vue'
 import dataEnSample from '~/static/data/dataEn.json'
 
 @Component({
+  components: {
+    CardContents,
+    NoLowerStage,
+  },
   asyncData() {
     return { dataEnSample }
   },
