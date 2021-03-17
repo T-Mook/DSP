@@ -5,6 +5,9 @@
       :min-height="$vuetify.breakpoint.height - 122"
       color="rgba(0,0,0,0)"
     >
+      <v-card-text class="d-flex justify-center mt-4 pb-0 yellow--text">
+        {{ textOfGoal }}
+      </v-card-text>
       <!-- ### Start : Search Bar ### -->
       <v-card-actions class="d-flex justify-center">
         <v-card flat max-width="400" class="mt-4 py-0">
@@ -64,6 +67,7 @@ import dataEnSample from '~/static/data/dataEn.json'
   },
 })
 class PagesIndex extends Vue {
+  textOfGoal: string = "'어떻게 하면 이 자원을 끊김없이 생산할까?'"
   resourceName: null | string = 'Electric Motor'
 }
 export default PagesIndex

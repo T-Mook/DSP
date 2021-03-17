@@ -24,7 +24,7 @@ import MainFooter from '@/components/default/MainFooter.vue'
 })
 class LayoutDefault extends Vue {
   @Provide() appBar: { title: string; color: string } = {
-    title: 'DYSON SPHERE PROGRAM 공장 최적화 도우미',
+    title: 'DYSON SPHERE PROGRAM 공장 최적화 도우미 (v.1.0.0)',
     color: 'rgba(21,31,32,1)',
   }
 }
