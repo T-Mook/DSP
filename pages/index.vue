@@ -35,6 +35,11 @@ import RequiredProcess from '@/components/index/RequiredProcess.vue'
 import dataEnSample from '~/static/data/dataEn.json'
 
 @Component({
+  head() {
+    return {
+      title: '공정 최적화 도우미 - Dyson Sphere Program w T-Mook',
+    }
+  },
   asyncData() {
     const totalNameOfResource: Array<string> = Object.keys(dataEnSample)
     return { totalNameOfResource }
