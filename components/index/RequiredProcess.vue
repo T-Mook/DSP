@@ -6,10 +6,13 @@
       :key="index"
       outlined
       flat
-      class="my-4 px-4 pb-4"
+      color="rgba(0,0,0,0)"
+      class="my-4 px-0 pb-4"
     >
-      <v-card-title>
+      <!-- Start: 필요 건물 수 표시 -->
+      <v-card-title class="pb-2">
         <!-- Start: img -->
+        <!--
         <v-avatar>
           <v-img
             height="20"
@@ -18,20 +21,23 @@
             contain
           />
         </v-avatar>
-        {{ upperResourceName }} 생산용 {{ obj.building }} 1대당 필요 하위 건물수
+        -->
+        <span class="goal-text">
+          #{{ index + 1 }}. {{ upperResourceName }} 생산용
+          {{ obj.building }} 1대당 <br v-if="$vuetify.breakpoint.xsOnly" />
+          필요 하위 건물수
+        </span>
       </v-card-title>
-      <v-list-item two-line>
+
+      <!-- Start : 상세 정보 표시 -->
+      <v-list-item two-line class="ml-1 mb-4">
         <v-list-item-content>
           <v-list-item-subtitle>
-            > 생산 정보 : {{ obj.building }}에서 {{ obj.second }}초당
-            {{ obj.output }}개의 {{ upperResourceName }} 생산
-          </v-list-item-subtitle>
-          <v-list-item-subtitle>
-            <span>> 총 필요 재료:</span>
+            <span class="goal-subtitle-text">> 필요 재료:</span>
             <span
               v-for="(r, rIndex) in Object.entries(obj.recipe)"
               :key="rIndex"
-              class="mr-1"
+              class="goal-subtitle-text mr-1"
             >
               <span>{{ r[0] }}</span>
               <span v-if="!Number.isNaN(r[1])">{{ r[1] }}개</span>
@@ -43,23 +49,27 @@
               </span>
             </span>
           </v-list-item-subtitle>
+          <v-list-item-subtitle>
+            <span class="goal-subtitle-text">
+              > 생산 정보 : {{ obj.building }}에서 {{ obj.second }}초당
+              {{ obj.output }}개의 {{ upperResourceName }} 생산
+            </span>
+          </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
+
       <!-- Start : Print Building and Number Of Lower Production-->
       <div
         v-for="(objKey, lowerIndex) in Object.keys(obj.recipeDetail)"
         :key="lowerIndex"
       >
-        <card-contents
-          v-if="obj.recipeDetail[objKey][2] !== null"
-          :obj="obj"
-          :obj-key="objKey"
-        />
-        <no-lower-stage v-else />
+        <card-contents :obj="obj" :obj-key="objKey" />
       </div>
     </v-card>
     <!-- Using Formula -->
-    <v-card-text class="d-flex justify-center">{{ formulaText }}</v-card-text>
+    <v-card-text class="d-flex justify-center px-12">
+      {{ formulaText }}
+    </v-card-text>
   </v-card>
 </template>
 
@@ -345,3 +355,15 @@ class ComponentsIndexRequiredProcess extends Vue {
 
 export default ComponentsIndexRequiredProcess
 </script>
+
+<style scoped>
+.goal-text {
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+.goal-subtitle-text {
+  font-weight: 300;
+  font-size: 0.9rem;
+  color: lightgray;
+}
+</style>

@@ -1,6 +1,10 @@
 <template>
   <v-row justify="center" align="center">
-    <v-card :max-width="mainCardMaxWidth" flat color="rgba(0,0,0,0)">
+    <v-card
+      :max-width="mainCardMaxWidth"
+      :min-height="$vuetify.breakpoint.height - 122"
+      color="rgba(0,0,0,0)"
+    >
       <!-- ### Start : Search Bar ### -->
       <v-card-actions class="d-flex justify-center">
         <v-card flat max-width="400" class="mt-4 py-0">
@@ -16,13 +20,15 @@
       </v-card-actions>
       <!-- ### Start : All Required Process ### -->
       <required-process :upper-resource-name="resourceName" />
-      <v-card-actions class="justify-center mt-2">
+      <v-card-actions class="justify-center my-2">
         <v-btn
           href="https://store.steampowered.com/app/1366540/Dyson_Sphere_Program/"
           color="blue lighten-1"
           outlined
         >
-          Buy Here! (Steam)
+          Buy Here! (
+          <v-icon small class="mr-1">mdi-steam</v-icon>
+          Steam)
         </v-btn>
       </v-card-actions>
     </v-card>

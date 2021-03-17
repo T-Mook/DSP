@@ -52,7 +52,7 @@
     "Organic crystal":{
         "index":5,
         "category":"ores",
-        "recipe":"Plastic(2),Refined Oil(1),Water(1)&Log(20),Plant Fuel(30),Water(10)&Organic crystal vein",
+        "recipe":"Plastic(2),Refined oil(1),Water(1)&Log(20),Plant Fuel(30),Water(10)&Organic crystal vein",
         "output":"1&1&1",
         "producedSecond":"6&6&2",
         "producedIn":"Chemical Plant&Assembling Machine&Mining machine",
@@ -282,7 +282,7 @@
     "Plastic":{
         "index":28,
         "category":"Materials",
-        "recipe":"Refined Oil(2),Energetic Graphite(1)",
+        "recipe":"Refined oil(2),Energetic Graphite(1)",
         "output":"1",
         "producedSecond":"3",
         "producedIn":"Chemical Plant",
@@ -615,14 +615,14 @@
         "recipe":"Tree",
         "output":"1",
         "producedSecond":"1",
-        "producedIn":"Tree",
+        "producedIn":"direct",
         "time":20210314,
         "timeModify":20210314
     },
     "Energetic Graphite":{
         "index":62,
         "category":"Fuels",
-        "recipe":"Coal(2)&Refined Oil(1),Hydrogen(2)",
+        "recipe":"Coal(2)&Refined oil(1),Hydrogen(2)",
         "output":"1&1",
         "producedSecond":"2&4",
         "producedIn":"Smelter&Oil Refinery",
