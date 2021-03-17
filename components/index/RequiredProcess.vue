@@ -11,20 +11,15 @@
     >
       <!-- Start: 필요 건물 수 표시 -->
       <v-card-title class="pb-2">
-        <!-- Start: img -->
-        <!--
-        <v-avatar>
-          <v-img
-            height="20"
-            width="20"
-            src="https://dsp-wiki.com/images/2/2a/Icon_Crystal_Silicon.png"
-            contain
-          />
-        </v-avatar>
-        -->
         <span class="goal-text">
-          #{{ index + 1 }}. {{ upperResourceName }} 생산용
-          {{ obj.building }} 1대당 <br v-if="$vuetify.breakpoint.xsOnly" />
+          #{{ index + 1 }}.
+          <!-- Start: img -->
+          <v-avatar size="25">
+            <v-img contain :src="obj.src" :alt="upperResourceName" />
+          </v-avatar>
+          <!-- Start: 나머지 설명 -->
+          {{ upperResourceName }} 생산용 {{ obj.building }} 1대당
+          <br v-if="$vuetify.breakpoint.xsOnly" />
           필요 하위 건물수
         </span>
       </v-card-title>
@@ -52,7 +47,13 @@
           <v-list-item-subtitle>
             <span class="goal-subtitle-text">
               > 생산 정보 : {{ obj.building }}에서 {{ obj.second }}초당
-              {{ obj.output }}개의 {{ upperResourceName }} 생산
+              {{ obj.output }}개의
+              <!-- Start: img -->
+              <v-avatar size="18">
+                <v-img contain :src="obj.src" :alt="upperResourceName" />
+              </v-avatar>
+              <!-- Start: 나머지 설명 -->
+              {{ upperResourceName }} 생산
             </span>
           </v-list-item-subtitle>
         </v-list-item-content>
@@ -164,7 +165,9 @@ class ComponentsIndexRequiredProcess extends Vue {
     return result
   }
 
-  makeEachRecipeArray(arrayOfLists: { [key: string]: any }): Array<object> {
+  makeEachRecipeArray(arrayOfLists: {
+    [key: string]: any
+  }): Array<{ [key: string]: any }> {
     const buildingList: Array<any> = arrayOfLists['buildingList']
     const recipeList: Array<any> = arrayOfLists['recipeList']
     const outputList: Array<any> = arrayOfLists['outputList']
@@ -310,6 +313,7 @@ class ComponentsIndexRequiredProcess extends Vue {
         textOfProducedSecond,
         '&',
       )
+
       // Check Value Number of Each List
       const ArrayOfListsLength: Array<number> = [
         recipeList.length,
@@ -330,6 +334,9 @@ class ComponentsIndexRequiredProcess extends Vue {
         secondList,
       }
       const neededList = this.makeEachRecipeArray(arrayOfLists)
+
+      // Add src (Resource Img)
+      neededList[0]['src'] = datas[targetResourceName]['src']
 
       return neededList
     } else {

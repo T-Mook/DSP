@@ -26,14 +26,24 @@
     <v-expansion-panels v-else flat>
       <v-expansion-panel>
         <v-expansion-panel-header class="lower-stage-goal-header-text">
-          {{ objKey }} 생산용 <br v-if="$vuetify.breakpoint.xsOnly" />
-          {{ obj.recipeDetail[objKey][2][0] }}
-          {{ Math.ceil(obj.recipeDetail[objKey][2][1]) }} 대
+          <!-- Start: img -->
+          <span>
+            <v-avatar size="24" class="mr-1">
+              <v-img
+                contain
+                :src="obj.recipeDetail[objKey][1][0].src"
+                :alt="objKey"
+              />
+            </v-avatar>
+            {{ objKey }} 생산용 <br v-if="$vuetify.breakpoint.xsOnly" />
+            {{ obj.recipeDetail[objKey][2][0] }}
+            {{ Math.ceil(obj.recipeDetail[objKey][2][1]) }} 대
+          </span>
         </v-expansion-panel-header>
         <v-expansion-panel-content>
           <v-card flat outlined class="mt-0 pt-2 px-0 px-sm-4">
-            <v-list-item class="ml-2">
-              <v-list-item-content class="py-0">
+            <v-list-item three-line class="ml-2">
+              <v-list-item-content class="my-6 py-0">
                 <!-- Start: needed number -->
                 <v-list-item-subtitle>
                   <span class="lower-stage-goal-subtitle-text mr-1">
@@ -76,6 +86,13 @@
                       +
                     </span>
                   </span>
+                </v-list-item-subtitle>
+                <!-- Start: Additional Explanations -->
+                <v-list-item-subtitle>
+                  <small class="ml-2">
+                    *아래는 {{ obj.recipeDetail[objKey][2][0] }} 1대당 필요 하위
+                    재료 공장 수 입니다
+                  </small>
                 </v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
@@ -129,6 +146,6 @@ export default ComponentsIndexRequiredProcessCardContents
   font-weight: 300;
   font-size: 0.9rem;
   color: lightgray;
-  line-height: 0.8rem;
+  line-height: 1.2rem;
 }
 </style>
