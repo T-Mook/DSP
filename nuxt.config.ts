@@ -51,7 +51,7 @@ export default {
 
   // pass your Google Analytics ID to id field of googleAnalytics
   googleAnalytics: {
-    id: '265810776',
+    id: 'UA-121779163-4',
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
